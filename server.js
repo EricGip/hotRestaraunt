@@ -72,11 +72,27 @@ app.get("/add", function (req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+app.get("/add", function (req, res) {
+  res.sendFile(path.join(__dirname, "home.html"));
+});
 // Displays all reservations
 app.get("/api/reservations", function (req, res) {
   return res.json(reservations);
 });
 
+<<<<<<< HEAD
+var booked 
+if (reservations.length <= 5) {
+  booked = true;
+}
+
+else {
+  booked = false;
+}
+res.json (booked);
+})
+
+=======
 // Displays a single character, or returns false
 app.get("/api/reservations/:reservation", function (req, res) {
   var chosen = req.params.reservation;
@@ -111,6 +127,8 @@ app.post("/api/reservations", function (req, res) {
 
 // Starts the server to begin listening
 // =============================================================
+>>>>>>> 2d7f57e9c7a5df3a579e75019e7e183993e8956c
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });
+
