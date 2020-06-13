@@ -2,6 +2,8 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+var bodyParser = require ("body-parser");
+var inquirer = require ("inquirer");
 
 // Sets up the Express App
 // =============================================================
@@ -16,31 +18,31 @@ app.use(express.json());
 
 
 
-// Reservations (DATA)
-// =============================================================
-var characters = [
-  {
-    routeName: "",
-    name: "",
-    role: "",
-    phoneNumber: 900,
-    forcePoints: 2000
-  },
-  {
-    routeName: "darthmaul",
-    name: "Darth Maul",
-    role: "Sith Lord",
-    age: 200,
-    forcePoints: 1200
-  },
-  {
-    routeName: "",
-    name: "",
-    role: "",
-    age: 55,
-    forcePoints: 1350
-  }
-];
+// // Reservations (DATA)
+// // =============================================================
+// var characters = [
+//   {
+//     routeName: "",
+//     name: "",
+//     role: "",
+//     phoneNumber: 900,
+//     forcePoints: 2000
+//   },
+//   {
+//     routeName: "darthmaul",
+//     name: "Darth Maul",
+//     role: "Sith Lord",
+//     age: 200,
+//     forcePoints: 1200
+//   },
+//   {
+//     routeName: "",
+//     name: "",
+//     role: "",
+//     age: 55,
+//     forcePoints: 1350
+//   }
+// ];
 
 
 
@@ -49,57 +51,57 @@ var characters = [
 
 
 
-// Routes
-// =============================================================
+// // Routes
+// // =============================================================
 
-// Basic route that sends the user first to the AJAX Page
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
-});
+// // Basic route that sends the user first to the AJAX Page
+// app.get("/", function (req, res) {
+//   res.sendFile(path.join(__dirname, "view.html"));
+// });
 
-app.get("/add", function (req, res) {
-  res.sendFile(path.join(__dirname, "add.html"));
-});
+// app.get("/add", function (req, res) {
+//   res.sendFile(path.join(__dirname, "add.html"));
+// });
 
-// Displays all characters
-app.get("/api/characters", function (req, res) {
-  return res.json(characters);
-});
+// // Displays all characters
+// app.get("/api/characters", function (req, res) {
+//   return res.json(characters);
+// });
 
-// Displays a single character, or returns false
-app.get("/api/characters/:character", function (req, res) {
-  var chosen = req.params.character;
+// // Displays a single character, or returns false
+// app.get("/api/characters/:character", function (req, res) {
+//   var chosen = req.params.character;
 
-  console.log(chosen);
+//   console.log(chosen);
 
-  for (var i = 0; i < characters.length; i++) {
-    if (chosen === characters[i].routeName) {
-      return res.json(characters[i]);
-    }
-  }
+//   for (var i = 0; i < characters.length; i++) {
+//     if (chosen === characters[i].routeName) {
+//       return res.json(characters[i]);
+//     }
+//   }
 
-  return res.json(false);
-});
+//   return res.json(false);
+// });
 
-// Create New Characters - takes in JSON input
-app.post("/api/characters", function (req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body parsing middleware
-  var newCharacter = req.body;
+// // Create New Characters - takes in JSON input
+// app.post("/api/characters", function (req, res) {
+//   // req.body hosts is equal to the JSON post sent from the user
+//   // This works because of our body parsing middleware
+//   var newCharacter = req.body;
 
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
+//   // Using a RegEx Pattern to remove spaces from newCharacter
+//   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+//   newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newCharacter);
+//   console.log(newCharacter);
 
-  characters.push(newCharacter);
+//   characters.push(newCharacter);
 
-  res.json(newCharacter);
-});
+//   res.json(newCharacter);
+// });
 
-// Starts the server to begin listening
-// =============================================================
-app.listen(PORT, function () {
-  console.log("App listening on PORT " + PORT);
-});
+// // Starts the server to begin listening
+// // =============================================================
+// app.listen(PORT, function () {
+//   console.log("App listening on PORT " + PORT);
+// });
