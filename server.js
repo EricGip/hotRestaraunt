@@ -77,37 +77,37 @@ app.get("/api/reservations", function (req, res) {
   return res.json(reservations);
 });
 
-// // Displays a single character, or returns false
-// app.get("/api/reservations/:character", function (req, res) {
-//   var chosen = req.params.character;
+// Displays a single character, or returns false
+app.get("/api/reservations/:reservation", function (req, res) {
+  var chosen = req.params.reservation;
 
-//   console.log(chosen);
+  console.log(chosen);
 
-//   for (var i = 0; i < characters.length; i++) {
-//     if (chosen === characters[i].routeName) {
-//       return res.json(characters[i]);
-//     }
-//   }
+  for (var i = 0; i < reservations.length; i++) {
+    if (chosen === reservations[i].routeName) {
+      return res.json(reservations[i]);
+    }
+  }
 
-//   return res.json(false);
-// });
+  return res.json(false);
+});
 
-// // Create New Characters - takes in JSON input
-// app.post("/api/characters", function (req, res) {
-//   // req.body hosts is equal to the JSON post sent from the user
-//   // This works because of our body parsing middleware
-//   var newCharacter = req.body;
+// Create New Characters - takes in JSON input
+app.post("/api/reservations", function (req, res) {
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body parsing middleware
+  var newReservation = req.body;
 
-//   // Using a RegEx Pattern to remove spaces from newCharacter
-//   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-//   newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
+  // Using a RegEx Pattern to remove spaces from newCharacter
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  newReservation.routeName = newReservation.fname.lname.replace(/\s+/g, "").toLowerCase();
 
-//   console.log(newCharacter);
+  console.log(newReservation);
 
-//   characters.push(newCharacter);
+  reservations.push(newReservation);
 
-//   res.json(newCharacter);
-// });
+  res.json(newReservation);
+});
 
 // Starts the server to begin listening
 // =============================================================
