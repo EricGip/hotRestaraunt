@@ -2,8 +2,6 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
-var bodyParser = require("body-parser");
-var inquirer = require("inquirer");
 
 // Sets up the Express App
 // =============================================================
@@ -61,15 +59,15 @@ var reservations = [
 ];
 
 //5 booked? if so to waiting list
-var booked
-if (reservations.length <= 5) {
-  booked = true;
-}
+// var booked
+// if (reservations.length <= 5) {
+//   booked = true;
+// }
 
-else {
-  booked = false;
-}
-res.json(booked);
+// else {
+//   booked = false;
+// }
+// res.json(booked);
 
 // Displays a single character, or returns false
 app.get("/api/reservations/:reservations", function (req, res) {
@@ -100,7 +98,7 @@ app.post("/api/reservations", function (req, res) {
 
   reservations.push(newReservation);
 
-  res.json(newReservation);
+  res.json(reservations);
 });
 
 // Starts the server to begin listening
