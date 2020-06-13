@@ -27,9 +27,9 @@ app.get("/add", function (req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
 });
 
-// Displays all characters
-app.get("/api/characters", function (req, res) {
-  return res.json(characters);
+// Displays all reseravations
+app.get("/api/reservations", function (req, res) {
+  return res.json(reservations);
 });
 
 
@@ -39,49 +39,29 @@ app.get("/api/characters", function (req, res) {
 var reservations = [
   {
     routeName: "johndoe",
-    fname: "John",
-    lname: "Doe",
+    name: "John Doe",
     phoneNumber: 1112223333,
-    email: "john.doe@yahoo.com"
+    email: "john.doe@yahoo.com",
+    uniqeId: 0001
   },
   {
     routeName: "janedoe",
-    fname: "Jane",
-    lname: "Doe",
+    name: "Jane Doe",
     phoneNumber: 2223334444,
-    email: "jane.doe@yahoo.com"
+    email: "jane.doe@yahoo.com",
+    uniqeId: 0002
   },
   {
     routeName: "bobdoe",
-    fname: "Bob",
-    lname: "Doe",
+    name: "Bob Doe",
     phoneNumber: 3334445555,
-    email: "bobby.kewl@gmail.com"
+    email: "bobby.kewl@gmail.com",
+    uniqeId: 0003
   },
 ];
 
-// Route
-// =============================================================
-
-// Basic route that sends the user first to the AJAX Page
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "tables.html"));
-});
-
-app.get("/add", function (req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
-});
-
-app.get("/add", function (req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
-});
-// Displays all reservations
-app.get("/api/reservations", function (req, res) {
-  return res.json(reservations);
-});
-
-<<<<<<< HEAD
-var booked 
+//5 booked? if so to waiting list
+var booked
 if (reservations.length <= 5) {
   booked = true;
 }
@@ -89,12 +69,10 @@ if (reservations.length <= 5) {
 else {
   booked = false;
 }
-res.json (booked);
-})
+res.json(booked);
 
-=======
 // Displays a single character, or returns false
-app.get("/api/reservations/:reservation", function (req, res) {
+app.get("/api/reservations/:reservations", function (req, res) {
   var chosen = req.params.reservation;
 
   console.log(chosen);
@@ -116,7 +94,7 @@ app.post("/api/reservations", function (req, res) {
 
   // Using a RegEx Pattern to remove spaces from newCharacter
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newReservation.routeName = newReservation.fname.lname.replace(/\s+/g, "").toLowerCase();
+  newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
 
   console.log(newReservation);
 
@@ -127,8 +105,6 @@ app.post("/api/reservations", function (req, res) {
 
 // Starts the server to begin listening
 // =============================================================
->>>>>>> 2d7f57e9c7a5df3a579e75019e7e183993e8956c
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });
-
