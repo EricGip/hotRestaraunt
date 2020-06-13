@@ -56,6 +56,28 @@ var reservations = [
     email: "bobby.kewl@gmail.com",
     uniqeId: 0003
   },
+  {
+    routeName: "johnlennon",
+    name: "John Lennon",
+    phoneNumber: 3334445555,
+    email: "john.kewl@gmail.com",
+    uniqeId: 0004
+  },
+  {
+    routeName: "paulmccartney",
+    name: "Paul McCartney",
+    phoneNumber: 3334445555,
+    email: "bobby.kewl@gmail.com",
+    uniqeId: 0005
+  },
+  {
+    routeName: "georgeharrison",
+    name: "George Harrison",
+    phoneNumber: 3334445555,
+    email: "bobby.kewl@gmail.com",
+    uniqeId: 0006
+  },
+  
 ];
 
 //5 booked? if so to waiting list
@@ -100,6 +122,13 @@ app.post("/api/reservations", function (req, res) {
 
   res.json(reservations);
 });
+
+app.post ("/api/clear", function (req, res){
+  console.log ("clear all tables");
+  tables = [];
+  res.sendFile(path.join(__dirname, "tables.html"));
+});
+
 
 // Starts the server to begin listening
 // =============================================================
