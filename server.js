@@ -80,6 +80,7 @@ app.get("/api/reservations", function (req, res) {
   return res.json(reservations);
 });
 
+<<<<<<< HEAD
 var booked 
 if (reservations.length <= 5) {
   booked = true;
@@ -91,6 +92,42 @@ else {
 res.json (booked);
 })
 
+=======
+// Displays a single character, or returns false
+app.get("/api/reservations/:reservation", function (req, res) {
+  var chosen = req.params.reservation;
+
+  console.log(chosen);
+
+  for (var i = 0; i < reservations.length; i++) {
+    if (chosen === reservations[i].routeName) {
+      return res.json(reservations[i]);
+    }
+  }
+
+  return res.json(false);
+});
+
+// Create New Characters - takes in JSON input
+app.post("/api/reservations", function (req, res) {
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body parsing middleware
+  var newReservation = req.body;
+
+  // Using a RegEx Pattern to remove spaces from newCharacter
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  newReservation.routeName = newReservation.fname.lname.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newReservation);
+
+  reservations.push(newReservation);
+
+  res.json(newReservation);
+});
+
+// Starts the server to begin listening
+// =============================================================
+>>>>>>> 2d7f57e9c7a5df3a579e75019e7e183993e8956c
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });
